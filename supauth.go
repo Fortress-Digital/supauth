@@ -61,13 +61,22 @@ type HttpClientInterface interface {
 	Do(req *http.Request) (*http.Response, error)
 }
 
+type Auth interface {
+	SignUp(credentials UserCredentials) (*AuthResponse, error)
+	SignIn(credentials UserCredentials) (*AuthResponse, error)
+	SignOut(token string) (*AuthResponse, error)
+	RefreshToken(refreshToken string) (*AuthResponse, error)
+	ForgottenPassword(email string) (*AuthResponse, error)
+	ResetPassword(token, password string) (*AuthResponse, error)
+}
+
 type Client struct {
 	BaseUrl    string
 	ApiKey     string
 	HttpClient HttpClientInterface
 }
 
-func New(projectId string, apiKey string) *Client {
+func New(projectId string, apiKey string) Auth {
 	baseUrl := fmt.Sprintf("https://%s.supabase.co/%s", projectId, authEndpoint)
 
 	return &Client{
