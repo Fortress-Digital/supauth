@@ -26,7 +26,7 @@ func TestNew(t *testing.T) {
 	project := "test"
 	apiKey := "abc123"
 
-	client := New(project, "abc123")
+	client := New(project, "abc123").(*Client)
 
 	assert.NotEqual(t, nil, client)
 	assert.Equal(t, "https://test.supabase.co/auth/v1", client.BaseUrl)
@@ -72,7 +72,7 @@ var createRequestTests = []struct {
 
 func TestCreateRequest(t *testing.T) {
 	for _, tt := range createRequestTests {
-		sut := New("test", "abc123")
+		sut := New("test", "abc123").(*Client)
 
 		if tt.url != "" {
 			sut.BaseUrl = tt.url
@@ -189,7 +189,7 @@ func TestSendRequest(t *testing.T) {
 }
 
 func TestPostRequest(t *testing.T) {
-	sut := New("test", "abc123")
+	sut := New("test", "abc123").(*Client)
 	req, err := sut.post("test", nil)
 
 	assert.Equal(t, err, nil)
@@ -198,7 +198,7 @@ func TestPostRequest(t *testing.T) {
 }
 
 func TestPutRequest(t *testing.T) {
-	sut := New("test", "abc123")
+	sut := New("test", "abc123").(*Client)
 	req, err := sut.put("test", nil)
 
 	assert.Equal(t, err, nil)
