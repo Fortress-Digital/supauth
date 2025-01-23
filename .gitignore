@@ -1,2 +1,6 @@
 # Ignore coverage
 *.out
+
+.idea
+cmd
+cmd/*
