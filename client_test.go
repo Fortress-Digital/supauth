@@ -23,7 +23,7 @@ func TestNewClient(t *testing.T) {
 	project := "test"
 	apiKey := "abc123"
 
-	client := newClient(project, "abc123").(*client)
+	client := newClient(project, "abc123")
 
 	assert.NotEqual(t, nil, client)
 	assert.Equal(t, "https://test.supabase.co/auth/v1", client.BaseUrl)

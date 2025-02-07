@@ -57,8 +57,8 @@ type Auth struct {
 	client clientInterface
 }
 
-func NewAuth(projectId string, apiKey string) AuthInterface {
-	client := newClient(projectId, apiKey).(*client)
+func NewAuth(projectId string, apiKey string) *Auth {
+	client := newClient(projectId, apiKey)
 
 	return &Auth{
 		client: client,

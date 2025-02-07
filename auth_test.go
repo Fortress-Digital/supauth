@@ -35,11 +35,9 @@ func TestNewAuth(t *testing.T) {
 	project := "test"
 	apiKey := "abc123"
 
-	auth, isAuth := NewAuth(project, apiKey).(*Auth)
-	_, isClient := auth.client.(*client)
+	auth := NewAuth(project, apiKey)
 
-	assert.Equal(t, true, isAuth)
-	assert.Equal(t, true, isClient)
+	assert.NotEqual(t, nil, auth.client)
 }
 
 var signUpTests = []struct {

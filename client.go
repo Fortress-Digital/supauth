@@ -39,7 +39,7 @@ type client struct {
 	HttpClient httpClientInterface
 }
 
-func newClient(projectId, apiKey string) clientInterface {
+func newClient(projectId, apiKey string) *client {
 	baseUrl := fmt.Sprintf("https://%s.supabase.co/%s", projectId, authEndpoint)
 
 	return &client{
